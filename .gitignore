@@ -21,3 +21,7 @@ tags
 # Compiled executables
 *.exe
 *.out
+
+# Outputs
+*.mp4
+out/*
