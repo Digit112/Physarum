@@ -280,9 +280,27 @@ public:
 			FRy = (FRy + h) % h;
 
 			// Sample
-			int F  = l_deposit[Fx  + Fy  * w];
-			int FL = l_deposit[FLx + FLy * w];
-			int FR = l_deposit[FRx + FRy * w];
+			int SR2 = SW/2;
+			int F = 0;
+			for (int x = Fx - SR2; x <= Fx + SR2; x++) {
+				for (int y = Fy - SR2; y <= Fy + SR2; y++) {
+					F += l_deposit[(x + w) % w + ((y + h) % h) * w];
+				}
+			}
+
+			int FL = 0;
+			for (int x = FLx - SR2; x <= FLx + SR2; x++) {
+				for (int y = FLy - SR2; y <= FLy + SR2; y++) {
+					FL += l_deposit[(x + w) % w + ((y + h) % h) * w];
+				}
+			}
+
+			int FR = 0;
+			for (int x = FRx - SR2; x <= FRx + SR2; x++) {
+				for (int y = FRy - SR2; y <= FRy + SR2; y++) {
+					FR += l_deposit[(x + w) % w + ((y+h) % h) * w];
+				}
+			}
 
 			// Deposit chemoattractant
 			l_deposit[(int) nx + ((int) ny) * w] += depT;

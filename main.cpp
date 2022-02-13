@@ -6,28 +6,29 @@
 int main() {
 	printf("Hello Physarum!\n");
 
-	f_skip = 2;
+	int f_skip = 2;
 
-	int width = 1000;
-	int height = 1000;
-	float pop_dens = 0.15;
+	int width = 1920;
+	int height = 1080;
+	float pop_dens = 0.015;
 
 	physarum2 phy(width, height, pop_dens);
 	phy.initialize(0);
 
-	phy.decayT = 0.2;
+	phy.decayT = 0.1;
 	phy.RA = M_PI / 8;
 	phy.SO = 9;
 	phy.SS = 1.5;
+	phy.SW = 3;
 
 	phy.update_args();
 
 	printf("%d agents.\n", phy.agents_n);
 	uint8_t* img = (uint8_t*) malloc(width*height);
 	char buf[128];
-	float a = 50000;
+	float a = 20000;
 
-	for (int i = 0; i < 400; i++) {
+	for (int i = 0; i < 1600; i++) {
 		printf("Frame %d...\n", i);
 
 		if (i % f_skip == 0) {
